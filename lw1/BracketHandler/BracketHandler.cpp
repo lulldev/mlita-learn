@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void GenerateSequence(size_t n, size_t openCounter, size_t closeCounter, string resultString)
+void GenerateSimpleSequence(size_t n, size_t openCounter, size_t closeCounter, string resultString)
 {
     if (openCounter + closeCounter == n && IsBracketsValidInString(resultString))
     {
@@ -15,12 +15,12 @@ void GenerateSequence(size_t n, size_t openCounter, size_t closeCounter, string 
 
     if (openCounter < n)
     {
-        GenerateSequence(n, openCounter + 1, closeCounter, resultString + '(');
+        GenerateSimpleSequence(n, openCounter + 1, closeCounter, resultString + '(');
     }
 
     if (openCounter > closeCounter)
     {
-        GenerateSequence(n, openCounter, closeCounter + 1, resultString + ')');
+        GenerateSimpleSequence(n, openCounter, closeCounter + 1, resultString + ')');
     }
 }
 
@@ -53,9 +53,4 @@ bool IsBracketsValidInString(std::string preparedString)
         }
     }
     return (charStack.size() == 0);
-}
-
-void BracketHandler()
-{
-
 }
