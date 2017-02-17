@@ -7,3 +7,6 @@ CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.o
 CMakeFiles/lw1.dir/main.cpp.o
  /Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.h
  /Users/lull/GitHub/mlita-learn/lw1/main.cpp
+CMakeFiles/lw1.dir/testing.cpp.o
+ /Users/lull/GitHub/mlita-learn/lw1/lib/catch.hpp
+ /Users/lull/GitHub/mlita-learn/lw1/testing.cpp

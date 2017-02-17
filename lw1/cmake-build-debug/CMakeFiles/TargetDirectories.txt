@@ -1,3 +1,4 @@
 /Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles/lw1_testing.dir
 /Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles/lw1.dir

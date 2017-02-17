@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named lw1_testing
+
+# Build rule for target.
+lw1_testing: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lw1_testing
+.PHONY : lw1_testing
+
+# fast build rule for target.
+lw1_testing/fast:
+	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/build
+.PHONY : lw1_testing/fast
+
+#=============================================================================
 # Target rules for targets named lw1
 
 # Build rule for target.
@@ -129,6 +142,7 @@ BracketHandler/BracketHandler.o: BracketHandler/BracketHandler.cpp.o
 
 # target to build an object file
 BracketHandler/BracketHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/BracketHandler/BracketHandler.cpp.o
 	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.o
 .PHONY : BracketHandler/BracketHandler.cpp.o
 
@@ -138,6 +152,7 @@ BracketHandler/BracketHandler.i: BracketHandler/BracketHandler.cpp.i
 
 # target to preprocess a source file
 BracketHandler/BracketHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/BracketHandler/BracketHandler.cpp.i
 	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.i
 .PHONY : BracketHandler/BracketHandler.cpp.i
 
@@ -147,6 +162,7 @@ BracketHandler/BracketHandler.s: BracketHandler/BracketHandler.cpp.s
 
 # target to generate assembly for a file
 BracketHandler/BracketHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/BracketHandler/BracketHandler.cpp.s
 	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.s
 .PHONY : BracketHandler/BracketHandler.cpp.s
 
@@ -177,6 +193,36 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+testing.o: testing.cpp.o
+
+.PHONY : testing.o
+
+# target to build an object file
+testing.cpp.o:
+	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/testing.cpp.o
+	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/testing.cpp.o
+.PHONY : testing.cpp.o
+
+testing.i: testing.cpp.i
+
+.PHONY : testing.i
+
+# target to preprocess a source file
+testing.cpp.i:
+	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/testing.cpp.i
+	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/testing.cpp.i
+.PHONY : testing.cpp.i
+
+testing.s: testing.cpp.s
+
+.PHONY : testing.s
+
+# target to generate assembly for a file
+testing.cpp.s:
+	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/testing.cpp.s
+	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/testing.cpp.s
+.PHONY : testing.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -185,6 +231,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... lw1_testing"
 	@echo "... lw1"
 	@echo "... BracketHandler/BracketHandler.o"
 	@echo "... BracketHandler/BracketHandler.i"
@@ -192,6 +239,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... testing.o"
+	@echo "... testing.i"
+	@echo "... testing.s"
 .PHONY : help
 
 

@@ -7,3 +7,6 @@ CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.o: ../BracketHandler/Bracke
 CMakeFiles/lw1.dir/main.cpp.o: ../BracketHandler/BracketHandler.h
 CMakeFiles/lw1.dir/main.cpp.o: ../main.cpp
 
+CMakeFiles/lw1.dir/testing.cpp.o: ../lib/catch.hpp
+CMakeFiles/lw1.dir/testing.cpp.o: ../testing.cpp
+
