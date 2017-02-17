@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.cpp">
+			<Option target="lw1"/>
+		</Unit>
+		<Unit filename="/Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.h">
+			<Option target="lw1"/>
+		</Unit>
 		<Unit filename="/Users/lull/GitHub/mlita-learn/lw1/main.cpp">
 			<Option target="lw1"/>
 		</Unit>

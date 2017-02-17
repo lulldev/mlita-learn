@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/lw1.dir/main.cpp.o"
+  "CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.o"
   "lw1.pdb"
   "lw1"
 )

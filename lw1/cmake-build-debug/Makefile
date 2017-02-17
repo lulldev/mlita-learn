@@ -123,6 +123,33 @@ lw1/fast:
 	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/build
 .PHONY : lw1/fast
 
+BracketHandler/BracketHandler.o: BracketHandler/BracketHandler.cpp.o
+
+.PHONY : BracketHandler/BracketHandler.o
+
+# target to build an object file
+BracketHandler/BracketHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.o
+.PHONY : BracketHandler/BracketHandler.cpp.o
+
+BracketHandler/BracketHandler.i: BracketHandler/BracketHandler.cpp.i
+
+.PHONY : BracketHandler/BracketHandler.i
+
+# target to preprocess a source file
+BracketHandler/BracketHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.i
+.PHONY : BracketHandler/BracketHandler.cpp.i
+
+BracketHandler/BracketHandler.s: BracketHandler/BracketHandler.cpp.s
+
+.PHONY : BracketHandler/BracketHandler.s
+
+# target to generate assembly for a file
+BracketHandler/BracketHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/BracketHandler/BracketHandler.cpp.s
+.PHONY : BracketHandler/BracketHandler.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lw1"
+	@echo "... BracketHandler/BracketHandler.o"
+	@echo "... BracketHandler/BracketHandler.i"
+	@echo "... BracketHandler/BracketHandler.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

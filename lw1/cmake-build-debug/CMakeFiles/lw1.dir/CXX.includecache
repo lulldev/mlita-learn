@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.cpp
+iostream
+-
+stack
+-
+BracketHandler.h
+/Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.h
+
+/Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.h
+
+/Users/lull/GitHub/mlita-learn/lw1/main.cpp
+iostream
+-
+string
+-
+BracketHandler/BracketHandler.h
+/Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.h
+
