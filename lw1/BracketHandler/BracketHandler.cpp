@@ -5,6 +5,26 @@
 
 using namespace std;
 
+void GenerateSequence(size_t n, size_t openCounter, size_t closeCounter, string resultString)
+{
+    if (openCounter + closeCounter == n && IsBracketsValidInString(resultString))
+    {
+        cout << resultString << endl;
+        return;
+    }
+
+    if (openCounter < n)
+    {
+        GenerateSequence(n, openCounter + 1, closeCounter, resultString + '(');
+    }
+
+    if (openCounter > closeCounter)
+    {
+        GenerateSequence(n, openCounter, closeCounter + 1, resultString + ')');
+    }
+}
+
+
 bool IsBracketsValidInString(std::string preparedString)
 {
     std::stack<char> charStack;
