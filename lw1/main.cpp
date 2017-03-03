@@ -1,52 +1,47 @@
-#include <algorithm>
-#include <iostream>
-#include <set>
-
+#include <fstream>
 #include "BracketHandler/BracketHandler.h"
 
 using namespace std;
 
-typedef string T_brackets_expression;
-
-string ConcatExpressions(const string bracketExpression1, const string bracketExpression2,
-                              const string resultString = T_brackets_expression())
+int main(int argc, const char * argv[])
 {
-    return bracketExpression1 + bracketExpression2 + resultString;
-}
-
-set<string> make_brackets_expressions(int  len)
-{
-    set<string>  from;
-    set<string>  to;
-    to.insert("");
-    for(int  L = 0; L < len / 2; ++L)
+    if (argc != 3)
     {
-        swap(from, to);
-        to.clear();
-        for(set<string>::const_iterator it = from.begin(); it != from.end(); ++it)
-        {
-            to.insert(ConcatExpressions("(", *it, ")") );
-            to.insert(ConcatExpressions("[", *it, "]") );
-
-            to.insert(ConcatExpressions("()", *it) );
-            to.insert(ConcatExpressions(*it, "()") );
-
-            to.insert(ConcatExpressions("[]", *it) );
-            to.insert(ConcatExpressions(*it, "[]") );
-        }
+        cout << "Program arguments startup error\n" << "Usage: program <input file> <output file>\n";
+        return 1;
     }
-    return  to;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-int main()
-{
-    size_t len;
-    cin >> len;
 
-    set<string> brackets_expressions = make_brackets_expressions(len);
+    ifstream inputFile(argv[1]);
+    ofstream outputFile(argv[2]);
 
-    for(set<string>::const_iterator  it = brackets_expressions.begin(); it != brackets_expressions.end(); ++it)
+    if (!inputFile.is_open() || !outputFile.is_open())
     {
-        cout << *it << endl;
+        cout << "Error i/o files: " << argv[1] << endl;
+        return 1;
     }
+
+    if (inputFile.fail() || !outputFile.is_open())
+    {
+        cout << "Fail i/o files" << endl;
+        return 1;
+    }
+
+    string fileLine;
+    getline(inputFile, fileLine);
+    int lenght;
+
+    try
+    {
+        lenght = stoi(fileLine);
+    }
+    catch(...)
+    {
+        cout << "Error converting number" << endl;
+        return 1;
+    }
+
+    set<string> bracketExpressions = GenerateBracketExpression(lenght);
+    OutputResultBracketExpression(bracketExpressions, outputFile);
+
+    return 0;
 }

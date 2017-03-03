@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug
 CMakeFiles/lw1_testing.dir/all:
 	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/depend
 	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles --progress-num=5,6,7 "Built target lw1_testing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles --progress-num=4,5,6 "Built target lw1_testing"
 .PHONY : CMakeFiles/lw1_testing.dir/all
 
 # Include target in all.
@@ -103,7 +103,7 @@ clean: CMakeFiles/lw1_testing.dir/clean
 CMakeFiles/lw1.dir/all:
 	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/depend
 	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target lw1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target lw1"
 .PHONY : CMakeFiles/lw1.dir/all
 
 # Include target in all.
@@ -113,7 +113,7 @@ all: CMakeFiles/lw1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/lw1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/lw1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lull/GitHub/mlita-learn/lw1/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/lw1.dir/rule

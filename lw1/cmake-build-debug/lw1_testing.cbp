@@ -135,7 +135,6 @@
 		</Unit>
 		<Unit filename="/Users/lull/GitHub/mlita-learn/lw1/testing.cpp">
 			<Option target="lw1_testing"/>
-			<Option target="lw1"/>
 		</Unit>
 		<Unit filename="/Users/lull/GitHub/mlita-learn/lw1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

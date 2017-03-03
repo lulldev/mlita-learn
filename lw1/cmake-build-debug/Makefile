@@ -200,7 +200,6 @@ testing.o: testing.cpp.o
 # target to build an object file
 testing.cpp.o:
 	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/testing.cpp.o
-	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/testing.cpp.o
 .PHONY : testing.cpp.o
 
 testing.i: testing.cpp.i
@@ -210,7 +209,6 @@ testing.i: testing.cpp.i
 # target to preprocess a source file
 testing.cpp.i:
 	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/testing.cpp.i
-	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/testing.cpp.i
 .PHONY : testing.cpp.i
 
 testing.s: testing.cpp.s
@@ -220,7 +218,6 @@ testing.s: testing.cpp.s
 # target to generate assembly for a file
 testing.cpp.s:
 	$(MAKE) -f CMakeFiles/lw1_testing.dir/build.make CMakeFiles/lw1_testing.dir/testing.cpp.s
-	$(MAKE) -f CMakeFiles/lw1.dir/build.make CMakeFiles/lw1.dir/testing.cpp.s
 .PHONY : testing.cpp.s
 
 # Help Target

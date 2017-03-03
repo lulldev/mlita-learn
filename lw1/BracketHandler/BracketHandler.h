@@ -1,3 +1,11 @@
-bool IsBracketsValidInString(std::string preparedString);
-void GenerateSimpleSequence(size_t n, size_t openCounter, size_t closeCounter, std::string resultString);
-size_t GetMinEvenNumber(size_t number);
+#include <iostream>
+#include <set>
+#include <sstream>
+
+typedef std::string T_brackets_expression;
+
+std::string ConcatExpressions(const std::string bracketExpression1, const std::string bracketExpression2,
+                         const std::string resultString);
+
+std::set<std::string> GenerateBracketExpression(int length);
+void OutputResultBracketExpression(std::set<std::string> bracketExpression, std::ostream& output);

@@ -1,56 +1,42 @@
-#include <iostream>
-#include <stack>
-
 #include "BracketHandler.h"
 
 using namespace std;
 
-void GenerateSimpleSequence(size_t n, size_t openCounter, size_t closeCounter, string resultString)
+string ConcatExpressions(const string bracketExpression1, const string bracketExpression2,
+                         const string resultString = T_brackets_expression())
 {
-    if (openCounter + closeCounter == n && IsBracketsValidInString(resultString))
-    {
-        cout << resultString << endl;
-        return;
-    }
-
-    if (openCounter < n)
-    {
-        GenerateSimpleSequence(n, openCounter + 1, closeCounter, resultString + '(');
-    }
-
-    if (openCounter > closeCounter)
-    {
-        GenerateSimpleSequence(n, openCounter, closeCounter + 1, resultString + ')');
-    }
+    return bracketExpression1 + bracketExpression2 + resultString;
 }
 
-
-bool IsBracketsValidInString(std::string preparedString)
+set<string> GenerateBracketExpression(int length)
 {
-    std::stack<char> charStack;
-    for(int i = 0; i < preparedString.length(); ++i)
+    set<string> from;
+    set<string> to;
+    to.insert("");
+
+    for(int i = 0; i < length / 2; ++i)
     {
-        if ((preparedString[i] =='(') || (preparedString[i] =='['))
+        swap(from, to);
+        to.clear();
+        for(set<string>::const_iterator it = from.begin(); it != from.end(); ++it)
         {
-            charStack.push(preparedString[i]);
-        }
-        else
-        {
-            if (charStack.size() == 0)
-            {
-                return false;
-            }
+            to.insert(ConcatExpressions("(", *it, ")") );
+            to.insert(ConcatExpressions("[", *it, "]") );
 
-            char currentChar = charStack.top(); // берем последнюю открывающую скобку
-            charStack.pop();
+            to.insert(ConcatExpressions("()", *it) );
+            to.insert(ConcatExpressions(*it, "()") );
 
-            if ((currentChar == '(' && preparedString[i] != ')') ||
-                (currentChar == '[' && preparedString[i] != ']'))
-            {
-                return false;
-            }
-
+            to.insert(ConcatExpressions("[]", *it) );
+            to.insert(ConcatExpressions(*it, "[]") );
         }
     }
-    return (charStack.size() == 0);
+    return  to;
+}
+
+void OutputResultBracketExpression(set<string> bracketExpression, ostream& output)
+{
+    for(set<string>::const_iterator  it = bracketExpression.begin(); it != bracketExpression.end(); ++it)
+    {
+        output << *it << endl;
+    }
 }
