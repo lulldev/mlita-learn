@@ -17,6 +17,8 @@ set
 -
 sstream
 -
+stack
+-
 
 /Users/lull/GitHub/mlita-learn/lw1/main.cpp
 fstream

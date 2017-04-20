@@ -40,8 +40,8 @@ int main(int argc, const char * argv[])
         return 1;
     }
 
-    set<string> bracketExpressions = GenerateBracketExpression(lenght);
-    OutputResultBracketExpression(bracketExpressions, outputFile);
+    string s(""), d("");
+    ValidBracketsGenerator(outputFile, lenght, s, d, 0);
 
     return 0;
 }

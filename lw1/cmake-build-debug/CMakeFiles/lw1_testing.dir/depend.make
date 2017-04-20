@@ -4,6 +4,7 @@
 CMakeFiles/lw1_testing.dir/BracketHandler/BracketHandler.cpp.o: ../BracketHandler/BracketHandler.cpp
 CMakeFiles/lw1_testing.dir/BracketHandler/BracketHandler.cpp.o: ../BracketHandler/BracketHandler.h
 
+CMakeFiles/lw1_testing.dir/testing.cpp.o: ../BracketHandler/BracketHandler.h
 CMakeFiles/lw1_testing.dir/testing.cpp.o: ../lib/catch.hpp
 CMakeFiles/lw1_testing.dir/testing.cpp.o: ../testing.cpp
 

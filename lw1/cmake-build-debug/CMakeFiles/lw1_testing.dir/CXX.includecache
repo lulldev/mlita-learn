@@ -7,14 +7,18 @@
 #IncludeRegexTransform: 
 
 /Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.cpp
-iostream
--
-stack
--
 BracketHandler.h
 /Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.h
 
 /Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.h
+iostream
+-
+set
+-
+sstream
+-
+stack
+-
 
 /Users/lull/GitHub/mlita-learn/lw1/lib/catch.hpp
 sstream
@@ -251,6 +255,10 @@ assert.h
 -
 
 /Users/lull/GitHub/mlita-learn/lw1/testing.cpp
+iostream
+-
 lib/catch.hpp
 /Users/lull/GitHub/mlita-learn/lw1/lib/catch.hpp
+BracketHandler/BracketHandler.h
+/Users/lull/GitHub/mlita-learn/lw1/BracketHandler/BracketHandler.h
 

@@ -2,41 +2,62 @@
 
 using namespace std;
 
-string ConcatExpressions(const string bracketExpression1, const string bracketExpression2,
-                         const string resultString = T_brackets_expression())
+void ValidBracketsGenerator(ostream& output, int amount, std::string& brackets, std::string& check, int counter)
 {
-    return bracketExpression1 + bracketExpression2 + resultString;
+    if ((counter == amount / 2) && (check.empty()))
+    {
+        output << brackets << endl;
+    }
+
+    if (counter < amount / 2)
+    {
+        string charStack = brackets + '(';
+        string s2 = check + ')';
+        string s3 = brackets + '[';
+        string s4 = check + ']';
+
+        ValidBracketsGenerator(output, amount, charStack, s2, counter + 1);
+        ValidBracketsGenerator(output, amount, s3, s4, counter + 1);
+    }
+
+    if (!check.empty())
+    {
+        string charStack;
+        (check.back() == ')') ?
+                charStack = brackets + ')' : charStack = brackets + ']';
+        string s2 = check.substr(0, check.size() - 1);
+        ValidBracketsGenerator(output, amount, charStack, s2, counter);
+    }
 }
 
-set<string> GenerateBracketExpression(int length)
+bool IsBracketsValid(string bracketsStr)
 {
-    set<string> from;
-    set<string> to;
-    to.insert("");
-
-    for(int i = 0; i < length / 2; ++i)
+    int i = 0;
+    int flag = 0;
+    stack<char> charStack;
+    while (bracketsStr[i] != '\0')
     {
-        swap(from, to);
-        to.clear();
-        for(set<string>::const_iterator it = from.begin(); it != from.end(); ++it)
+        if(bracketsStr[i]=='(')
         {
-            to.insert(ConcatExpressions("(", *it, ")") );
-            to.insert(ConcatExpressions("[", *it, "]") );
-
-            to.insert(ConcatExpressions("()", *it) );
-            to.insert(ConcatExpressions(*it, "()") );
-
-            to.insert(ConcatExpressions("[]", *it) );
-            to.insert(ConcatExpressions(*it, "[]") );
+            charStack.push(')');
         }
+        else if (bracketsStr[i]=='{')
+        {
+            charStack.push('}');
+        }
+        else if(bracketsStr[i]=='[')
+        {
+            charStack.push(']');
+        }
+        else if(charStack.empty() || charStack.top() != bracketsStr[i])
+        {
+            return false;
+        }
+        else
+        {
+            charStack.pop();
+        }
+        i++;
     }
-    return  to;
-}
-
-void OutputResultBracketExpression(set<string> bracketExpression, ostream& output)
-{
-    for(set<string>::const_iterator  it = bracketExpression.begin(); it != bracketExpression.end(); ++it)
-    {
-        output << *it << endl;
-    }
+    return charStack.empty();
 }
