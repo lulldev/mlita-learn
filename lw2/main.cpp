@@ -1,4 +1,9 @@
+#include <iostream>
+#include <string>
+#include <vector>
 #include <fstream>
+#include <map>
+
 #include "TriangleSum/TriangleSum.h"
 
 using namespace std;
@@ -27,18 +32,25 @@ int main(int argc, const char * argv[])
     }
 
     string fileLine;
-    getline(inputFile, fileLine);
-//    int lenght;
-//
-//    try
-//    {
-//        lenght = stoi(fileLine);
-//    }
-//    catch(...)
-//    {
-//        cout << "Error converting number" << endl;
-//        return 1;
-//    }
+    int strCounter = 0;
+    int triangleWeight;
+
+    vector<vector<int>> vectorOfTriangleData;
+
+    while (getline(inputFile, fileLine))
+    {
+        if (strCounter == 0)
+        {
+            triangleWeight = stoi(fileLine);
+        }
+        else
+        {
+            vector<int> stringToSplitVector = SplitIntegers(fileLine, ' ');
+            vectorOfTriangleData.push_back(stringToSplitVector);
+        }
+        strCounter++;
+    }
+
 
     return 0;
 }
