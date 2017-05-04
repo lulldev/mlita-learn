@@ -1,8 +1,6 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <fstream>
-#include <map>
 
 #include "TriangleSum/TriangleSum.h"
 
@@ -33,7 +31,7 @@ int main(int argc, const char * argv[])
 
     string fileLine;
     int strCounter = 0;
-    int triangleWeight;
+    int triangleWeight = 0;
 
     vector<vector<int>> vectorOfTriangleData;
 
@@ -51,6 +49,7 @@ int main(int argc, const char * argv[])
         strCounter++;
     }
 
+    CalculateTriangleMaxSum(triangleWeight, vectorOfTriangleData, outputFile);
 
     return 0;
 }
