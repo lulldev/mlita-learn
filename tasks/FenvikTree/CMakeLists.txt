@@ -3,5 +3,5 @@ project(task2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp FenvikTree/FenvikTree.cpp FenvikTree/FenvikTree.h FenvikTree/Helpers.h)
 add_executable(task1 ${SOURCE_FILES})

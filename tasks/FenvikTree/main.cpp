@@ -2,37 +2,14 @@
 #include <vector>
 #include <fstream>
 
+#include "FenvikTree/Helpers.h"
+#include "FenvikTree/FenvikTree.h"
+
 using namespace std;
-
-const vector<int> SplitIntegers(const string& targetString, const char& delimiter)
-{
-    string tmpString("");
-    vector<int> resultVector;
-
-    for(auto prepareString : targetString)
-    {
-        if(prepareString != delimiter)
-        {
-            tmpString += prepareString;
-        }
-        else if(prepareString == delimiter && tmpString != "")
-        {
-            resultVector.push_back(stoi(tmpString));
-            tmpString = "";
-        }
-    }
-
-    if(tmpString != "")
-    {
-        resultVector.push_back(stoi(tmpString));
-    }
-
-    return resultVector;
-}
 
 int main(int argc, const char * argv[])
 {
-    if (argc != 2)
+    if (argc != 3)
     {
         cout << "Program arguments startup error\n" << "Usage: program <input file> <output file>\n";
         return 1;
@@ -66,10 +43,14 @@ int main(int argc, const char * argv[])
         }
         else
         {
-            arrayElements = SplitIntegers(fileLine, ' ');
+            arrayElements = SplitIntegersFromString(fileLine, ' ');
         }
         strCounter++;
     }
+
+    init(arrayElements);
+    
+
     cout << arrayElements[1] << endl;
     return 0;
 }
