@@ -2,6 +2,8 @@
 
 using namespace std;
 
+#define INFINITIVE 100000
+
 const vector<int> SplitIntegers(const string& targetString, const char& delimiter)
 {
     string tmpString("");
@@ -34,29 +36,81 @@ void CalculateTriangleMaxSum(int triangleWeight, std::vector<std::vector<int>>& 
     //int triangleLevelCounter = triangleWeight - 1;
     //std::map <string, string> resultWayAsMaxSum; // example {"way": "sum"}
 
-    std::vector<std::vector<int>> vectorOfRelativeSums;
+    std::vector<std::vector<int>> vectorOfRelativeSums = vectorOfTriangleData;
     triangleWeight = triangleWeight - 1;
 
-    bool isProcessed = false;
-    while (!isProcessed)
+    int currentLineCounter = triangleWeight - 1;
+    while (currentLineCounter >= 0) // цикл по строке
     {
-        int currentLineCounter = triangleWeight - 1;
-        while (currentLineCounter >= 0) // цикл по строке m - n
+        int currentPosition = 0;
+        while (currentPosition <= currentLineCounter)
         {
-            int currentPosition = 0;
-            while (currentPosition <= currentLineCounter)
-            {
-                cout << vectorOfTriangleData[currentLineCounter][currentPosition] << endl;
-                cout << "Daughters:" << endl;
-                cout << vectorOfTriangleData[currentLineCounter + 1][currentPosition] << endl;
-                cout << vectorOfTriangleData[currentLineCounter + 1][currentPosition + 1] << endl;
-                cout << endl;
-                currentPosition++;
-            }
-            currentLineCounter--;
+            vectorOfRelativeSums[currentLineCounter][currentPosition] = INFINITIVE;
+            currentPosition++;
         }
+        currentLineCounter--;
+    }
 
-        isProcessed = true;
+    currentLineCounter = triangleWeight - 1;
+    while (currentLineCounter >= 0) // цикл по строке
+    {
+        int currentPosition = 0;
+        while (currentPosition <= currentLineCounter)
+        {
+            int currentPoint = vectorOfTriangleData[currentLineCounter][currentPosition];
+            int leftChildPoint = vectorOfTriangleData[currentLineCounter + 1][currentPosition];
+            int rightChildPoint = vectorOfTriangleData[currentLineCounter + 1][currentPosition + 1];
+
+//            cout << currentPoint << " - " << leftChildPoint << ":" << rightChildPoint << endl;
+
+            // кладем суммы.
+            if (vectorOfRelativeSums[currentLineCounter + 1][currentPosition] == INFINITIVE)
+            {
+                // кладем в левую дочернюю если там бесокнечность
+                vectorOfRelativeSums[currentLineCounter + 1][currentPosition] = currentPoint + leftChildPoint;
+            }
+            else
+            {
+                // если текущая больше дочерней - кладем текущее
+                if ((currentPoint + leftChildPoint) > vectorOfRelativeSums[currentLineCounter + 1][currentPosition])
+                {
+                    vectorOfRelativeSums[currentLineCounter + 1][currentPosition] = currentPoint + leftChildPoint;
+                }
+            }
+
+            // так же для правой
+            if (vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1] == INFINITIVE)
+            {
+                // кладем в правую дочернюю если там бесокнечность
+                vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1] = currentPoint + rightChildPoint;
+            }
+            else
+            {
+                // если текущая больше дочерней - кладем текущее
+                if ((currentPoint + rightChildPoint) > vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1])
+                {
+                    vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1] = currentPoint + leftChildPoint;
+                }
+            }
+
+            currentPosition++;
+        }
+        currentLineCounter--;
+    }
+
+    currentLineCounter = 0;
+    while (currentLineCounter <= triangleWeight - 1)
+    {
+        int currentPosition = 0;
+        while (currentPosition <= currentLineCounter)
+        {
+            int sumLeftChildPoint = vectorOfRelativeSums[currentLineCounter + 1][currentPosition];
+            int sumRightChildPoint = vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1];
+            cout << sumLeftChildPoint << ":" << sumRightChildPoint << endl;
+            currentPosition++;
+        }
+        cout << endl;
+        currentLineCounter++;
     }
 
 //    for (auto itResultMap = resultWayAsMaxSum.begin(); itResultMap != resultWayAsMaxSum.end(); ++itResultMap)
