@@ -31,11 +31,8 @@ const vector<int> SplitIntegers(const string& targetString, const char& delimite
 }
 
 void CalculateTriangleMaxSum(int triangleWeight, std::vector<std::vector<int>>& vectorOfTriangleData,
-                             std::ofstream& outputFile)
+                             std::ostream& outputFile)
 {
-    //int triangleLevelCounter = triangleWeight - 1;
-    //std::map <string, string> resultWayAsMaxSum; // example {"way": "sum"}
-
     std::vector<std::vector<int>> vectorOfRelativeSums = vectorOfTriangleData;
     triangleWeight = triangleWeight - 1;
 
@@ -89,7 +86,7 @@ void CalculateTriangleMaxSum(int triangleWeight, std::vector<std::vector<int>>& 
                 // если текущая больше дочерней - кладем текущее
                 if ((currentPoint + rightChildPoint) > vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1])
                 {
-                    vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1] = currentPoint + leftChildPoint;
+                    vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1] = currentPoint + rightChildPoint;
                 }
             }
 
@@ -99,24 +96,34 @@ void CalculateTriangleMaxSum(int triangleWeight, std::vector<std::vector<int>>& 
     }
 
     currentLineCounter = 0;
+    int currentPosition = 0;
+    int resultSum = vectorOfTriangleData[0][0];
+    string resultMaxWay("");
+    resultMaxWay += to_string(vectorOfTriangleData[0][0]) + " ";
+
     while (currentLineCounter <= triangleWeight - 1)
     {
-        int currentPosition = 0;
         while (currentPosition <= currentLineCounter)
         {
             int sumLeftChildPoint = vectorOfRelativeSums[currentLineCounter + 1][currentPosition];
             int sumRightChildPoint = vectorOfRelativeSums[currentLineCounter + 1][currentPosition + 1];
-            cout << sumLeftChildPoint << ":" << sumRightChildPoint << endl;
-            currentPosition++;
+            if (sumLeftChildPoint > sumRightChildPoint)
+            {
+                resultSum += vectorOfTriangleData[currentLineCounter + 1][currentPosition];
+                resultMaxWay += to_string(vectorOfTriangleData[currentLineCounter + 1][currentPosition]) + " ";
+            }
+            else
+            {
+                resultSum += vectorOfTriangleData[currentLineCounter + 1][currentPosition + 1];
+                resultMaxWay += to_string(vectorOfTriangleData[currentLineCounter + 1][currentPosition + 1]) + " ";
+                currentPosition = currentPosition + 1;
+            }
+            break;
         }
-        cout << endl;
         currentLineCounter++;
     }
 
-//    for (auto itResultMap = resultWayAsMaxSum.begin(); itResultMap != resultWayAsMaxSum.end(); ++itResultMap)
-//    {
-//        cout << itResultMap->first << " : " << itResultMap->second << "\t\t   " << endl;
-//    }
-
+    outputFile << resultSum << endl;
+    outputFile << resultMaxWay << endl;
 
 }
