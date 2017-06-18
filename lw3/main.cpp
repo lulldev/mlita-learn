@@ -33,13 +33,47 @@ const vector<int> SplitIntegers(const string& targetString, const char& delimite
     return resultVector;
 }
 
-void FindStepPattern (int n, int k, int& pStep, int& pCount)
+void FindStepPattern (int n, int k, int x, int y, int& pStep, int& pCount)
 {
-//    int i = 1;
-//    while (i <= n)
-//    {
-//
-//    }
+    int i = 1;
+    string control;
+    while (i <= n)
+    {
+        if (i == 1)
+        {
+            if (i % k == 0)
+            {
+                control = "x";
+            }
+            else
+            {
+                control = "y";
+            }
+        }
+        if (control == "x" && (i % k == 0))
+        {
+            pCount += x;
+            pStep++;
+        }
+        else if (control == "y" && (i % k != 0))
+        {
+            pCount += y;
+            pStep++;
+        }
+        else
+        {
+            if (control == "x")
+            {
+                pCount += y;
+            }
+            else
+            {
+                pCount += x;
+            }
+            break;
+        }
+        i++;
+    }
 }
 
 int main(int argc, const char * argv[])
@@ -91,8 +125,10 @@ int main(int argc, const char * argv[])
 
     int pStep = 1;
     int pCount = 0;
-    FindStepPattern (n, k, pStep, pCount);
-    
+    FindStepPattern (n, k, x, y, pStep, pCount);
+
+    cout << "Pattern step = " << pStep << endl;
+    cout << "Pattern count = " << pCount << endl;
 
     return 0;
 }
