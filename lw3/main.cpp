@@ -6,6 +6,7 @@ using namespace std;
 
 const string inputFileName = "input.txt";
 const string outputFileName = "output.txt";
+const int ENTRANCE_COUNT = 3;
 
 const vector<int> SplitIntegers(const string& targetString, const char& delimiter)
 {
@@ -33,6 +34,7 @@ const vector<int> SplitIntegers(const string& targetString, const char& delimite
     return resultVector;
 }
 
+// unused
 void FindStepPattern (int n, int k, int x, int y, int& pStep, int& pCount)
 {
     int i = 1;
@@ -76,6 +78,62 @@ void FindStepPattern (int n, int k, int x, int y, int& pStep, int& pCount)
     }
 }
 
+int GetRoomCountInOneEntrance (int n, int k, int x, int y)
+{
+    int roomCount = 0;
+    int i = 1;
+    while (i <= n)
+    {
+        if ((i % k == 0))
+        {
+            roomCount += x;
+        }
+        else
+        {
+            roomCount += y;
+        }
+        i++;
+    }
+    return roomCount;
+}
+
+int FindFloorByRoomNo (int roomNo, int roomCountOneEntrance, int n, int k, int x, int y)
+{
+    int startRoom = 1;
+    int endRoom = roomCountOneEntrance;
+    int floor = -1;
+
+    while (startRoom  < roomCountOneEntrance * ENTRANCE_COUNT)
+    {
+        if (roomNo >= startRoom && roomNo <= endRoom)
+        {
+            int tmpStartRoom = startRoom;
+            int floorCounter = 1;
+            while (floorCounter <= n)
+            {
+                if ((tmpStartRoom) + x > roomNo || (tmpStartRoom) + y > roomNo)
+                {
+                    return (floorCounter);
+                }
+
+                if ((floorCounter % k == 0))
+                {
+                    tmpStartRoom += x;
+                }
+                else
+                {
+                    tmpStartRoom += y;
+                }
+                floorCounter++;
+            }
+        }
+
+        startRoom += roomCountOneEntrance;
+        endRoom += roomCountOneEntrance;
+    }
+    return floor;
+}
+
 int main(int argc, const char * argv[])
 {
 
@@ -116,19 +174,12 @@ int main(int argc, const char * argv[])
     int x = startedValues[2];
     int y = startedValues[3];
 
-    cout << "Startup values:" << endl;
-    cout << "q = " << to_string(targetRoomsCount) << endl;
-    cout << "n = " << to_string(n) << endl;
-    cout << "k = " << to_string(k) << endl;
-    cout << "x = " << to_string(x) << endl;
-    cout << "y = " << to_string(y) << endl;
+    int roomCountOneEntrance = GetRoomCountInOneEntrance (n, k, x, y);
 
-    int pStep = 1;
-    int pCount = 0;
-    FindStepPattern (n, k, x, y, pStep, pCount);
-
-    cout << "Pattern step = " << pStep << endl;
-    cout << "Pattern count = " << pCount << endl;
+    for (auto &room : targetRooms)
+    {
+        outputFile << FindFloorByRoomNo(room, roomCountOneEntrance, n, k, x, y) << endl;
+    }
 
     return 0;
 }
