@@ -8,12 +8,17 @@
 
 using namespace std;
 
-int numToPositive(int num)
+int numToPositive(int num, bool &issetNegative)
 {
-    return (num < 0) ? num * -1 : num;
+    if (num < 0) 
+    {   
+        issetNegative = true;
+        return num * -1;
+    }
+    return num;
 }
 
-const vector<int> SplitToPositiveIntegers(const string &targetString, const char &delimiter)
+const vector<int> SplitToPositiveIntegers(const string &targetString, const char &delimiter, bool &issetNegative)
 {
     string tmpString("");
     vector<int> resultVector;
@@ -26,14 +31,14 @@ const vector<int> SplitToPositiveIntegers(const string &targetString, const char
         }
         else if (prepareString == delimiter && tmpString != "")
         {
-            resultVector.push_back(numToPositive(stoi(tmpString)));
+            resultVector.push_back(numToPositive(stoi(tmpString), issetNegative));
             tmpString = "";
         }
     }
 
     if (tmpString != "")
     {
-        resultVector.push_back(numToPositive(stoi(tmpString)));
+        resultVector.push_back(numToPositive(stoi(tmpString), issetNegative));
     }
     return resultVector;
 }
@@ -53,6 +58,7 @@ int main()
     int numCount = 0;
     int strCounter = 0;
     vector<int> vectorOfNums;
+    bool issetNegative = false;
 
     while (getline(inputFile, fileLine))
     {
@@ -62,7 +68,7 @@ int main()
         }
         else if (strCounter == 1)
         {
-            vectorOfNums = SplitToPositiveIntegers(fileLine, ' ');
+            vectorOfNums = SplitToPositiveIntegers(fileLine, ' ', issetNegative);
         }
         else
         {
@@ -71,6 +77,13 @@ int main()
         strCounter++;
     }
 
-    cout << accumulate(vectorOfNums.begin(), vectorOfNums.end(), 0) << endl;
+    int minimalSum = accumulate(vectorOfNums.begin(), vectorOfNums.end(), 0);
+    
+    if (issetNegative) 
+    {
+        minimalSum *= -1;
+    }
+
+    outputFile << minimalSum;
     return 0;
 }
