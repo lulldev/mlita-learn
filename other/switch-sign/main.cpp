@@ -8,17 +8,18 @@
 
 using namespace std;
 
-int numToPositive(int num, bool &issetNegative)
+struct greater
 {
-    if (num < 0) 
-    {   
-        issetNegative = true;
-        return num * -1;
-    }
-    return num;
+    template<class T>
+    bool operator()(T const &a, T const &b) const { return a > b; }
+};
+
+int GetMinimalSumByReplacement(const vector<int> &vectorOfNums, int replaceCount) 
+{
+    sort(vectorOfNums.begin(), vectorOfNums.end(), greater());
 }
 
-const vector<int> SplitToPositiveIntegers(const string &targetString, const char &delimiter, bool &issetNegative)
+const vector<int> SplitToIntegers(const string &targetString, const char &delimiter)
 {
     string tmpString("");
     vector<int> resultVector;
@@ -31,14 +32,14 @@ const vector<int> SplitToPositiveIntegers(const string &targetString, const char
         }
         else if (prepareString == delimiter && tmpString != "")
         {
-            resultVector.push_back(numToPositive(stoi(tmpString), issetNegative));
+            resultVector.push_back(stoi(tmpString));
             tmpString = "";
         }
     }
 
     if (tmpString != "")
     {
-        resultVector.push_back(numToPositive(stoi(tmpString), issetNegative));
+        resultVector.push_back(stoi(tmpString));
     }
     return resultVector;
 }
@@ -56,19 +57,21 @@ int main()
 
     string fileLine;
     int numCount = 0;
+    int replaceCount = 0;
     int strCounter = 0;
     vector<int> vectorOfNums;
-    bool issetNegative = false;
 
     while (getline(inputFile, fileLine))
     {
         if (strCounter == 0)
         {
-            numCount = stoi(fileLine);
+            vectorOfNums = SplitToIntegers(fileLine, ' ');
+            numCount = vectorOfNums[0];
+            replaceCount = vectorOfNums[1];
         }
         else if (strCounter == 1)
         {
-            vectorOfNums = SplitToPositiveIntegers(fileLine, ' ', issetNegative);
+            vectorOfNums = SplitToIntegers(fileLine, ' ');
         }
         else
         {
@@ -78,12 +81,6 @@ int main()
     }
 
     int minimalSum = accumulate(vectorOfNums.begin(), vectorOfNums.end(), 0);
-    
-    if (issetNegative) 
-    {
-        minimalSum *= -1;
-    }
-
     outputFile << minimalSum;
     return 0;
 }
