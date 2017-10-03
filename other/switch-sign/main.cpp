@@ -8,15 +8,25 @@
 
 using namespace std;
 
-struct greater
+int GetMinimalSumByReplacement(vector<int> &vectorOfNums, int replaceCount) 
 {
-    template<class T>
-    bool operator()(T const &a, T const &b) const { return a > b; }
-};
-
-int GetMinimalSumByReplacement(const vector<int> &vectorOfNums, int replaceCount) 
-{
-    sort(vectorOfNums.begin(), vectorOfNums.end(), greater());
+    sort(vectorOfNums.begin(), vectorOfNums.end(), [](const int a, const int b) { return a > b; });
+    int i = 0;
+    int minSum = 0;
+    while (i < replaceCount) 
+    {
+        // todo:
+        if (vectorOfNums[i] > 0) 
+        {
+            vectorOfNums[i] = vectorOfNums[i] * (-1); 
+        }
+        else 
+        {
+            continue;
+        }
+        i++;
+    }
+    return accumulate(vectorOfNums.begin(), vectorOfNums.end(), 0);
 }
 
 const vector<int> SplitToIntegers(const string &targetString, const char &delimiter)
@@ -80,7 +90,6 @@ int main()
         strCounter++;
     }
 
-    int minimalSum = accumulate(vectorOfNums.begin(), vectorOfNums.end(), 0);
-    outputFile << minimalSum;
+    outputFile << GetMinimalSumByReplacement(vectorOfNums, replaceCount);
     return 0;
 }
