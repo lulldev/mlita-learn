@@ -12,17 +12,12 @@ int GetMinimalSumByReplacement(vector<int> &vectorOfNums, int replaceCount)
 {
     sort(vectorOfNums.begin(), vectorOfNums.end(), [](const int a, const int b) { return a > b; });
     int i = 0;
-    int minSum = 0;
-    while (i < replaceCount) 
+    while (i < vectorOfNums.size()) 
     {
-        // todo:
-        if (vectorOfNums[i] > 0) 
-        {
-            vectorOfNums[i] = vectorOfNums[i] * (-1); 
-        }
-        else 
-        {
-            continue;
+        vectorOfNums[i] = vectorOfNums[i] * (-1);
+        replaceCount--;
+        if (replaceCount == 0) {
+            break;
         }
         i++;
     }
