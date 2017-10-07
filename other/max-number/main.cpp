@@ -80,6 +80,6 @@ int main()
         strCounter++;
     }
 
-    cout << GetPositionOfMinimalNumber(vectorOfNums) << endl;
+    outputFile << GetPositionOfMinimalNumber(vectorOfNums);
     return 0;
 }
