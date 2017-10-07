@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <set>
 #include <fstream>
 #include <numeric>
 
@@ -8,43 +9,40 @@
 
 using namespace std;
 
-int GetMinimalSumByReplacement(vector<int> &vectorOfNums, int replaceCount) 
+int GetPositionOfMinimalNumber(vector<int> &vectorOfNumbers)
 {
-    sort(vectorOfNums.begin(), vectorOfNums.end(), [](const int a, const int b) { return a > b; });
+    set<int> existNumbers;
     int i = 0;
-    while (i < vectorOfNums.size()) 
+    int minNumberPos = i;
+    while (i < vectorOfNumbers.size() - 1)
     {
-        vectorOfNums[i] = vectorOfNums[i] * (-1);
-        replaceCount--;
-        if (replaceCount == 0) {
-            break;
+        if (vectorOfNumbers[i] <= vectorOfNumbers[i + 1])
+        {
+            if (existNumbers.count(vectorOfNumbers[i]) == 0)
+            {
+                existNumbers.insert(vectorOfNumbers[i]);
+                minNumberPos = i;
+            }
+        }
+        else
+        {
+            if (existNumbers.count(vectorOfNumbers[i + 1]) == 0)
+            {
+                existNumbers.insert(vectorOfNumbers[i + 1]);
+                minNumberPos = i + 1;
+            }
         }
         i++;
     }
-    return accumulate(vectorOfNums.begin(), vectorOfNums.end(), 0);
+    return (minNumberPos + 1);
 }
 
-const vector<int> SplitToIntegers(const string &targetString, const char &delimiter)
+const vector<int> SplitToIntegers(string &targetString)
 {
-    string tmpString("");
     vector<int> resultVector;
-
-    for (auto prepareString : targetString)
+    for (int i = 0; i < strlen(targetString.c_str()); i++)
     {
-        if (prepareString != delimiter)
-        {
-            tmpString += prepareString;
-        }
-        else if (prepareString == delimiter && tmpString != "")
-        {
-            resultVector.push_back(stoi(tmpString));
-            tmpString = "";
-        }
-    }
-
-    if (tmpString != "")
-    {
-        resultVector.push_back(stoi(tmpString));
+        resultVector.push_back(stoi(string(1, targetString[i])));
     }
     return resultVector;
 }
@@ -73,7 +71,7 @@ int main()
         }
         else if (strCounter == 1)
         {
-            vectorOfNums = SplitToIntegers(fileLine, ' ');
+            vectorOfNums = SplitToIntegers(fileLine);
         }
         else
         {
@@ -81,7 +79,7 @@ int main()
         }
         strCounter++;
     }
-    cout << numberLength << endl;
-    // outputFile << GetMinimalSumByReplacement(vectorOfNums, replaceCount);
+
+    cout << GetPositionOfMinimalNumber(vectorOfNums) << endl;
     return 0;
 }
