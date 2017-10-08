@@ -8,20 +8,9 @@
 
 using namespace std;
 
-int GetMinimalSumByReplacement(vector<int> &vectorOfNums, int replaceCount) 
+bool IsSegmentsHasOveralPoint(int fX1, int fY1, int fX2, int fY2, int sX1, int sY1, int sX2, int sY2)
 {
-    sort(vectorOfNums.begin(), vectorOfNums.end(), [](const int a, const int b) { return a > b; });
-    int i = 0;
-    while (i < vectorOfNums.size()) 
-    {
-        vectorOfNums[i] = vectorOfNums[i] * (-1);
-        replaceCount--;
-        if (replaceCount == 0) {
-            break;
-        }
-        i++;
-    }
-    return accumulate(vectorOfNums.begin(), vectorOfNums.end(), 0);
+    return true;
 }
 
 const vector<int> SplitToIntegers(const string &targetString, const char &delimiter)
@@ -61,30 +50,38 @@ int main()
     }
 
     string fileLine;
-    int numCount = 0;
-    int replaceCount = 0;
     int strCounter = 0;
     vector<int> vectorOfNums;
+    int fX1, fY1, fX2, fY2;
+    int sX1, sY1, sX2, sY2;
 
     while (getline(inputFile, fileLine))
     {
-        if (strCounter == 0)
+        vectorOfNums = SplitToIntegers(fileLine, ' ');
+        switch (strCounter)
         {
-            vectorOfNums = SplitToIntegers(fileLine, ' ');
-            numCount = vectorOfNums[0];
-            replaceCount = vectorOfNums[1];
-        }
-        else if (strCounter == 1)
-        {
-            vectorOfNums = SplitToIntegers(fileLine, ' ');
-        }
-        else
-        {
+        case 0:
+            fX1 = vectorOfNums[0];
+            fY1 = vectorOfNums[1];
             break;
+        case 1:
+            fX2 = vectorOfNums[0];
+            fY2 = vectorOfNums[1];
+            break;
+        case 2:
+            sX1 = vectorOfNums[0];
+            sY1 = vectorOfNums[1];
+            break;
+        case 3:
+            sX2 = vectorOfNums[0];
+            sY2 = vectorOfNums[1];
+            break;
+        default:
+            break;    
         }
         strCounter++;
     }
-
-    outputFile << GetMinimalSumByReplacement(vectorOfNums, replaceCount);
+    cout << fX1 << fY1 << fX2 << fY2 << sX1 << sY1 << sX2 << sY2 << endl;
+    outputFile << IsSegmentsHasOveralPoint(fX1, fY1, fX2, fY2, sX1, sY1, sX2, sY2);
     return 0;
 }
