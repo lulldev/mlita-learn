@@ -10,7 +10,31 @@ using namespace std;
 
 bool IsSegmentsHasOveralPoint(int fX1, int fY1, int fX2, int fY2, int sX1, int sY1, int sX2, int sY2)
 {
-    return true;
+    int a = fX2 - fX1,
+        b = sX1 - sX2,
+        c = sX1 - fX1,
+        d = fY2 - fY1,
+        e = sY1 - sY2,
+        f = sY1 - fY1;
+
+    double determinant = (a * e) - (b * d);
+    if (determinant == 0)
+    {
+        return false;
+    }
+    else
+    {
+        double dt = c * e - f * b;
+        double ds = a * f - c * d;
+        double t = dt / determinant;
+        double s = ds / determinant;
+        if ((s >= 0 and s <= 1) && (0 <= t) and (t <= 1))
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 const vector<int> SplitToIntegers(const string &targetString, const char &delimiter)
@@ -77,11 +101,15 @@ int main()
             sY2 = vectorOfNums[1];
             break;
         default:
-            break;    
+            break;
+            break;
         }
         strCounter++;
     }
-    cout << fX1 << fY1 << fX2 << fY2 << sX1 << sY1 << sX2 << sY2 << endl;
-    outputFile << IsSegmentsHasOveralPoint(fX1, fY1, fX2, fY2, sX1, sY1, sX2, sY2);
+
+    string result = IsSegmentsHasOveralPoint(fX1, fY1, fX2, fY2, sX1, sY1, sX2, sY2) ? "Yes" : "No";
+
+    outputFile << result;
+
     return 0;
 }
