@@ -11,30 +11,7 @@ using namespace std;
 
 int GetPositionOfMinimalNumber(vector<int> &vectorOfNumbers)
 {
-    set<int> existNumbers;
-    int i = 0;
-    int minNumberPos = i;
-    while (i < vectorOfNumbers.size() - 1)
-    {
-        if (vectorOfNumbers[i] <= vectorOfNumbers[i + 1])
-        {
-            if (existNumbers.count(vectorOfNumbers[i]) == 0)
-            {
-                existNumbers.insert(vectorOfNumbers[i]);
-                minNumberPos = i;
-            }
-        }
-        else
-        {
-            if (existNumbers.count(vectorOfNumbers[i + 1]) == 0)
-            {
-                existNumbers.insert(vectorOfNumbers[i + 1]);
-                minNumberPos = i + 1;
-            }
-        }
-        i++;
-    }
-    return (minNumberPos + 1);
+    return (min_element(vectorOfNumbers.begin(),vectorOfNumbers.end()) - vectorOfNumbers.begin()) + 1;
 }
 
 const vector<int> SplitToIntegers(string &targetString)
