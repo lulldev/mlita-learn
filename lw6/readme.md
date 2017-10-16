@@ -1,9 +1,5 @@
 <h4>Compile:</h4>
-```sh
-g++ -std=c++14 main.cpp
-```
+<code>g++ -std=c++14 main.cpp</code>
 
 <h4>Running:</h4>
-```sh
-./a.out
-```
+<code>./a.out</code>

@@ -8,74 +8,30 @@
 
 using namespace std;
 
-bool IsSegmentsHasOveralPoint(int fX1, int fY1, int fX2, int fY2, int sX1, int sY1, int sX2, int sY2)
+bool IsSegmentsHasOveralPoint(int x11, int y11, int x12, int y12, int x21, int y21, int x22, int y22)
 {
-    int tmp;
-    if (fX1 >= fX2) 
-    {
-        fX2 = tmp;
-        fX2 = fX1;
-        fX1 = tmp;
 
-        fY2 = tmp;
-        fY2 = fY1;
-        fY1 = tmp;
-    }
+    double common = (x12 - x11) * (y22 - y21) - (y12 - y11) * (x22 - x21);
 
-    if (sX1 >= sX2) 
-    {
-        sX2 = tmp;
-        sX2 = sX1;
-        sX1 = tmp;
-
-        sY2 = tmp;
-        sY2 = sY1;
-        sY1 = tmp;
-    }
-
-    float k1, k2;
-    if (fY1 == fY2)
-    {
-        k1 =  (fY2 - fY1) / (fX2 - fX1);
-    }
-
-    if (sY1 == sY2)
-    {
-        k2 =  (sY2 - sY1) / (sX2 - sX1);
-    }
-
-    if (k1 == k2)
+    if (common == 0)
     {
         return false;
     }
 
-    float b1 = fY1 - (k1 * fX1);
-    float b2 = sY1 - (k2 * sX1);  
-    // int a = fX2 - fX1,
-    //     b = sX1 - sX2,
-    //     c = sX1 - fX1,
-    //     d = fY2 - fY1,
-    //     e = sY1 - sY2,
-    //     f = sY1 - fY1;
+    double rH = (y11 - y21) * (x22 - x21) - (x11 - x21) * (y22 - y21);
+    double sH = (y11 - y21) * (x12 - x11) - (x11 - x21) * (y12 - y11);
 
-    // double determinant = (a * e) - (b * d);
-    // if (determinant == 0)
-    // {
-    //     return false;
-    // }
-    // else
-    // {
-    //     double dt = c * e - f * b;
-    //     double ds = a * f - c * d;
-    //     double t = dt / determinant;
-    //     double s = ds / determinant;
-    //     if ((s >= 0 && s <= 1) && (0 <= t) && (t <= 1))
-    //     {
-    //         return true;
-    //     }
-    // }
+    double r = rH / common;
+    double s = sH / common;
 
-    // return false;
+    if (r >= 0 && r <= 1 && s >= 0 && s <= 1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 const vector<int> SplitToIntegers(const string &targetString, const char &delimiter)
