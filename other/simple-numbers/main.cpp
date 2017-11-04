@@ -10,7 +10,7 @@ using namespace std;
 
 double GetSumBetweenSimpleNumbers(int a, int b) 
 {
-    return (b * (b - a)) / 2);
+    return (b * (b - a)) / 2;
 }
 
 const vector<int> SplitToIntegers(const string &targetString, const char &delimiter)
@@ -50,6 +50,7 @@ int main()
     }
 
     string fileLine;
+    int strCounter;
     vector<int> vectorOfNums;
     int a;
     int b;
