@@ -8,9 +8,29 @@
 
 using namespace std;
 
-double GetSumBetweenSimpleNumbers(int a, int b) 
+size_t GetPrimeSumBetweenNumbers(size_t a, size_t b)
 {
-    return (b * (b - a)) / 2;
+    size_t n = b;
+    size_t sum = 0;
+    vector<size_t> prime(n, true);
+
+    for (int i = 0; i < n; i++)
+    {
+        prime[i] = i;
+    }
+
+    for (int i = 2; i < (n + 1); i++)
+    {
+        if (prime[i] != 0)
+        {
+            sum += prime[i];
+            for (int j = (i * i); j < (n + 1); j += i)
+            {
+                prime[j] = 0;
+            }
+        }
+    }
+    return sum;
 }
 
 const vector<int> SplitToIntegers(const string &targetString, const char &delimiter)
@@ -50,10 +70,10 @@ int main()
     }
 
     string fileLine;
-    int strCounter;
+    int strCounter = 0;
     vector<int> vectorOfNums;
-    int a;
-    int b;
+    size_t a;
+    size_t b;
 
     while (getline(inputFile, fileLine))
     {
@@ -70,6 +90,6 @@ int main()
         strCounter++;
     }
 
-    outputFile << GetSumBetweenSimpleNumbers(a, b);
+    outputFile << GetPrimeSumBetweenNumbers(a, b);
     return 0;
 }
