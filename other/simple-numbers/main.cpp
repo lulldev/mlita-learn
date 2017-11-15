@@ -14,17 +14,18 @@ size_t GetPrimeSumBetweenNumbers(size_t a, size_t b)
     size_t sum = 0;
     vector<size_t> prime(n, true);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i <= n; i++)
     {
         prime[i] = i;
     }
 
-    for (int i = 2; i < (n + 1); i++)
+    prime[1] = 0;
+    for (int i = 2; i <= n; i++)
     {
         if (prime[i] != 0)
         {
             sum += prime[i];
-            for (int j = (i * i); j < (n + 1); j += i)
+            for (int j = (i * 2); j <= n; j += i)
             {
                 prime[j] = 0;
             }
